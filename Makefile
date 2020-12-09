@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 NAME		= libftprintf.a
-SRCS		= ft_printf.c ft_utils.c pf_cors.c pf_num.c pf_xtoa.c pf_hex.c
+SRCS		= ft_printf.c ft_utils.c pf_cors.c pf_num.c pf_xtoa.c pf_hex.c \
+				pf_ptr.c
 OBJS		= ${SRCS:.c=.o}
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -Iincludes

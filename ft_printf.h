@@ -23,9 +23,10 @@ typedef struct  s_struct
     char        *src;
     int         i;
     int         res;
-    int         Maxl;
+    int         minl;
+    int         prec;
     int         opad;
-    int         rjust;
+    int         ljust;
     long int    tohex;
     char        *cors;
 
@@ -50,5 +51,9 @@ char            *ft_utoa(unsigned int n);
 void            pf_puthex(long int n, t_struct *mod);
 void            pf_hex(t_struct *mod);
 void pf_ptr(t_struct *mod);
+int		ft_atoi(char *str);
+void	pf_zerpad(t_struct *mod);
+void	pf_minl(t_struct *mod);
+char	*pf_padder(int prec, int typad, char *str);
 
 #endif

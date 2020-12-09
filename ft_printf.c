@@ -13,25 +13,61 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-void	bckt_init(t_struct *bckt)
+void	pf_zorleft(t_struct *mod)
 {
-	bckt->Maxl = 0;
-	bckt->opad = 0;
-	bckt->rjust	= 0;
+	while (mod->src[mod->i] == '0' || mod->src[mod->i] == '-')
+	{
+		if (mod->src[mod->i] == '0')
+			mod->opad = 1;
+		if (mod->src[mod->i] == '-')
+			mod->ljust = 1;
+		mod->i++;
+	}
 }
 
-void	pf_flag(t_struct *mod)
+void	pf_minl(t_struct *mod)
 {
+	if (mod->src[mod->i] == '*')
+	{
+		mod->minl = va_arg(mod->args, int);
+		mod->i++;
+	}
+	if (mod->src[mod->i] > '0' && mod->src[mod->i] <= '9')
+	{
+		mod->minl = ft_atoi(mod->src + mod->i);
+		while (mod->src[mod->i] >= '0' && mod->src[mod->i] <= '9')
+			mod->i++;
+	}
+}
+
+void	pf_prec(t_struct *mod)
+{
+	mod->prec = 0;
+	mod->opad = 0;
 	mod->i++;
+	if (mod->src[mod->i] == '*')
+	{
+		mod->prec = va_arg(mod->args, int);
+		mod->i++;
+	}
+	else
+	{
+		mod->prec = ft_atoi(mod->src + mod->i);
+		while (mod->src[mod->i] >= '0' && mod->src[mod->i] <= '9')
+			mod->i++;
+	}
 }
 
 void	pf_pars(t_struct *mod)
 {
 	bckt_init(mod);
 	mod->i++;
-	while (mod->src[mod->i] == '0' || mod->src[mod->i] == '*' || \
-	mod->src[mod->i] == '-' || mod->src[mod->i] == '.')
-		pf_flag(mod);
+	pf_zorleft(mod);
+	if (mod->src[mod->i] == '*' || (mod->src[mod->i] > '0' && \
+	mod->src[mod->i] <= '9'))
+		pf_minl(mod);
+	if (mod->src[mod->i] == '.')
+		pf_prec(mod);
 	if (mod->src[mod->i] == 'c' || mod->src[mod->i] == 's' || \
 	mod->src[mod->i] == '%')
 		pf_cors(mod);
@@ -42,6 +78,7 @@ void	pf_pars(t_struct *mod)
 		pf_hex(mod);
 	if (mod->src[mod->i] == 'p')
 		pf_ptr(mod);
+	mod->i++;
 }
 
 int		ft_printf(const char *str, ...)
@@ -60,8 +97,8 @@ int		ft_printf(const char *str, ...)
 		{
 			write(1, &bckt.src[bckt.i], 1);
 			bckt.res++;
+			bckt.i++;
 		}
-		bckt.i++;
 	}
 	va_end(bckt.args);
 	return (bckt.res);

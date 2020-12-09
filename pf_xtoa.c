@@ -17,8 +17,12 @@ int     ft_intlen(long int n)
     int     i;
 
     i = 1;
-    while (n /= 10)
+    n /= 10;
+    while (n > 0)
+    {
         i++;
+        n /= 10;
+    }
     return (i);
 }
 
@@ -52,6 +56,7 @@ char    *ft_itoa(int n)
     if (sign == 1)
         res[0] = '-';
     ft_itoafill(res + sign, nbr, ft_intlen(nbr));
+    res[ft_intlen(nbr) + sign] = '\0';
     return (res);
 }
 
@@ -72,5 +77,6 @@ char    *ft_utoa(unsigned int n)
     if (!(res = malloc(sizeof(*res) * (ft_intlen((long int)nbr) + 1))))
         return (NULL);
     ft_utoafill(res, nbr, ft_intlen((long int)nbr));
+    res[ft_intlen(nbr)] = '\0';
     return (res);
 }
