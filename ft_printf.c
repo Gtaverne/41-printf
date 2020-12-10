@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:39:34 by user42            #+#    #+#             */
-/*   Updated: 2020/12/02 21:26:33 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/09 23:16:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	pf_pars(t_struct *mod)
 	if (mod->src[mod->i] == 'c' || mod->src[mod->i] == 's' || \
 	mod->src[mod->i] == '%')
 		pf_cors(mod);
-	if (mod->src[mod->i] == 'd' || mod->src[mod->i] == 'i'  || \
+	if (mod->src[mod->i] == 'd' || mod->src[mod->i] == 'i' || \
 	mod->src[mod->i] == 'u')
 		pf_num(mod);
 	if (mod->src[mod->i] == 'x' || mod->src[mod->i] == 'X')

@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 13:53:58 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 13:54:45 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/10 17:23:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	bckt_init(t_struct *mod)
 	mod->minl = 0;
 	mod->opad = 0;
 	mod->prec = -1;
+	mod->lex = 0;
 }
 
 int		ft_atoi(char *str)
 {
 	int	res;
-	int i;
-	
+	int	i;
+
 	i = 0;
 	res = 0;
 	while (str[i] >= '0' && str[i] <= '9')
@@ -43,7 +44,7 @@ void	pf_putchar(char c, t_struct *bckt)
 
 int		ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -53,12 +54,10 @@ int		ft_strlen(char *str)
 
 char	*pf_padder(int prec, int typad, char *str)
 {
-	int	len;
-	int	i;
-	int ls;
-	char *res;
+	int		len;
+	int		ls;
+	char	*res;
 
-	i = 0;
 	ls = ft_strlen(str);
 	len = (ls > prec ? ls : prec);
 	if (!(res = malloc((sizeof(*res) * (len + 1)))))
@@ -69,7 +68,7 @@ char	*pf_padder(int prec, int typad, char *str)
 		if (ls > 0)
 			res[len - 1] = str[ls - 1];
 		else
-			res[len - 1] = (typad > 0 ? '0' : ' ' );
+			res[len - 1] = (typad > 0 ? '0' : ' ');
 		len--;
 		ls--;
 	}
