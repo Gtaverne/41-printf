@@ -6,7 +6,7 @@
 #    By: user42 <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/02 18:18:11 by user42            #+#    #+#              #
-#    Updated: 2020/12/02 21:24:35 by user42           ###   ########.fr        #
+#    Updated: 2020/12/10 17:35:08 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OBJS		= ${SRCS:.c=.o}
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -Iincludes
 LIB			= ar -rcs
-RM			= rm -f
+RM			= rm -rf
 
 all: ${NAME}
 

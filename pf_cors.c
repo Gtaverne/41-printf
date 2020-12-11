@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 23:17:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/10 17:24:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/11 20:16:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,10 @@ void	pf_cors(t_struct *mod)
 	else if (mod->src[mod->i] == 's')
 	{
 		mod->cors = va_arg(mod->args, char *);
+		if (mod->cors == NULL && (mod->prec == -1 || mod->prec >= 6))
+			mod->cors = "(null)";
+		else if (mod->cors == NULL)
+			mod->cors = "\0";
 		if (mod->prec >= 0)
 			mod->cors = pf_prestr(mod->prec, mod->cors);
 	}

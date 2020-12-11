@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	pf_zorleft(t_struct *mod)
 {
@@ -31,6 +30,11 @@ void	pf_minl(t_struct *mod)
 	{
 		mod->minl = va_arg(mod->args, int);
 		mod->i++;
+		if (mod->minl < 0)
+		{
+			mod->ljust = 1;
+			mod->minl = -mod->minl;
+		}
 	}
 	if (mod->src[mod->i] > '0' && mod->src[mod->i] <= '9')
 	{
@@ -43,7 +47,7 @@ void	pf_minl(t_struct *mod)
 void	pf_prec(t_struct *mod)
 {
 	mod->prec = 0;
-	mod->opad = 0;
+	mod->opad++;
 	mod->i++;
 	if (mod->src[mod->i] == '*')
 	{
@@ -78,6 +82,8 @@ void	pf_pars(t_struct *mod)
 		pf_hex(mod);
 	if (mod->src[mod->i] == 'p')
 		pf_ptr(mod);
+	if (mod->src[mod->i] == '\0')
+		return ;
 	mod->i++;
 }
 

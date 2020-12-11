@@ -19,6 +19,7 @@ void	bckt_init(t_struct *mod)
 	mod->opad = 0;
 	mod->prec = -1;
 	mod->lex = 0;
+	mod->isneg = 0;
 }
 
 int		ft_atoi(char *str)
@@ -52,13 +53,13 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-char	*pf_padder(int prec, int typad, char *str)
+char	*pf_padder(int prec, t_struct *mod)
 {
 	int		len;
 	int		ls;
 	char	*res;
 
-	ls = ft_strlen(str);
+	ls = ft_strlen(mod->cors);
 	len = (ls > prec ? ls : prec);
 	if (!(res = malloc((sizeof(*res) * (len + 1)))))
 		return (NULL);
@@ -66,12 +67,12 @@ char	*pf_padder(int prec, int typad, char *str)
 	while (len > 0)
 	{
 		if (ls > 0)
-			res[len - 1] = str[ls - 1];
+			res[len - 1] = mod->cors[ls - 1];
 		else
-			res[len - 1] = (typad > 0 ? '0' : ' ');
+			res[len - 1] = (mod->opad > 0 ? '0' : ' ');
 		len--;
 		ls--;
 	}
-	free(str);
+	free(mod->cors);
 	return (res);
 }

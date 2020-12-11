@@ -59,7 +59,7 @@ void	pf_hex(t_struct *mod)
 	mod->cors[mod->lex] = '\0';
 	if (mod->cors == NULL || (mod->cors[0] == '0' && mod->prec == 0))
 		return ;
-	mod->cors = pf_padder(mod->prec, 1, mod->cors);
+	mod->cors = pf_padder(mod->prec, mod);
 	pf_nflag(mod);
 	free(mod->cors);
 }

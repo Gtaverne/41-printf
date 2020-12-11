@@ -34,29 +34,26 @@ void	ft_itoafill(char *str, long int n, int i)
 		ft_itoafill(str, n, i - 1);
 }
 
-char	*ft_itoa(int n)
+char	*pf_itoa(int n, t_struct *mod)
 {
 	char		*res;
 	int			i;
-	int			sign;
 	long int	nbr;
 
 	nbr = (long int)n;
-	sign = 0;
 	i = 0;
 	if (nbr < 0)
 	{
 		nbr = -1 * nbr;
-		sign++;
+		mod->isneg++;
 		i++;
 	}
-	if (!(res = malloc(sizeof(*res) * (ft_intlen(nbr) \
-						+ sign + 1))))
+	if (!(res = malloc(sizeof(*res) * (ft_intlen(nbr) + mod->isneg + 1))))
 		return (NULL);
-	if (sign == 1)
+	ft_itoafill(res, nbr, ft_intlen(nbr) + mod->isneg);
+	res[ft_intlen(nbr) + mod->isneg] = '\0';
+	if (mod->isneg)
 		res[0] = '-';
-	ft_itoafill(res + sign, nbr, ft_intlen(nbr));
-	res[ft_intlen(nbr) + sign] = '\0';
 	return (res);
 }
 

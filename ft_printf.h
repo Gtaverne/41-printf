@@ -23,6 +23,7 @@ typedef struct	s_struct
 	char		*src;
 	int			i;
 	int			res;
+	int			isneg;
 	int			minl;
 	int			prec;
 	int			opad;
@@ -46,7 +47,7 @@ void			pf_num(t_struct *mod);
 void			pf_nflag(t_struct *mod);
 int				ft_intlen(long int n);
 void			ft_itoafill(char *str, long int n, int i);
-char			*ft_itoa(int n);
+char			*pf_itoa(int n, t_struct *mod);
 void			ft_utoafill(char *str, long unsigned int n, int i);
 char			*ft_utoa(unsigned int n);
 void			pf_puthex(long int n, int i, t_struct *mod);
@@ -54,8 +55,7 @@ void			pf_hex(t_struct *mod);
 int				pf_lenhex(int n);
 void			pf_ptr(t_struct *mod);
 int				ft_atoi(char *str);
-void			pf_zerpad(t_struct *mod);
 void			pf_minl(t_struct *mod);
-char			*pf_padder(int prec, int typad, char *str);
+char			*pf_padder(int prec, t_struct *mod);
 
 #endif
