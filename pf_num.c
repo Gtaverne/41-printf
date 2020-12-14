@@ -55,9 +55,9 @@ char	*pf_zerpad(t_struct *mod)
 	len--;
 	while (len >= mod->isneg)
 	{
-		if ((mod->cors[i] >= '0' && mod->cors[i] <= '9') || (mod->cors[i] >= \
-		'a' && mod->cors[i] <= 'f') || (mod->cors[i] >= 'A' && mod->cors[i] \
-		 <= 'F'))
+		if (i >= 0 && ((mod->cors[i] >= '0' && mod->cors[i] <= '9') || \
+		(mod->cors[i] >= 'a' && mod->cors[i] <= 'f') || (mod->cors[i] >= \
+		'A' && mod->cors[i] <= 'F')))
 			repad[len] = mod->cors[i];
 		else
 			repad[len] = '0';
