@@ -51,8 +51,6 @@ char	*pf_zerpad(t_struct *mod)
 	i = ft_strlen(mod->cors) - 1;
 	if (!(repad = malloc(sizeof(char) * (len + 1))))
 		return (mod->cors);
-	if (mod->isneg)
-		repad[0] = '-';
 	repad[len] = '\0';
 	len--;
 	while (len >= mod->isneg)
@@ -66,6 +64,8 @@ char	*pf_zerpad(t_struct *mod)
 		len--;
 		i--;
 	}
+	if (mod->isneg)
+		repad[0] = '-';
 	free(mod->cors);
 	return (repad);
 }
