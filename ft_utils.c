@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "ft_printf.h"
 
 void	bckt_init(t_struct *mod)
@@ -74,7 +75,7 @@ char	*pf_padder(int prec, t_struct *mod)
 		ls--;
 	}
 	if (mod->opad == 1 && mod->isneg == 1)
-		mod->cors[0] = '-';
+		res[0] = '-';
 	free(mod->cors);
 	return (res);
 }
