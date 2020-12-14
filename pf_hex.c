@@ -58,11 +58,8 @@ void	pf_hex(t_struct *mod)
 	pf_puthex(mod->tohex, 1, mod);
 	mod->cors[mod->lex] = '\0';
 	if (mod->cors == NULL || (mod->cors[0] == '0' && mod->prec == 0))
-		return ;
-//	mod->cors = pf_padder(mod->prec, mod);
-//	pf_nflag(mod);
-//	free(mod->cors);
-		if (mod->opad && mod->prec == -1 && !mod->ljust)
+		mod->cors[0] = '\0';
+	if (mod->opad && mod->prec == -1 && !mod->ljust)
 		mod->prec = mod->minl - mod->isneg;
 	if (mod->prec > ft_strlen(mod->cors))
 		mod->cors = pf_zerpad(mod);

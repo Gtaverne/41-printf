@@ -45,7 +45,7 @@ char	*pf_itoa(int n, t_struct *mod)
 	if (nbr < 0)
 	{
 		nbr = -1 * nbr;
-		mod->isneg++;
+		mod->isneg = 1;
 		i++;
 	}
 	if (!(res = malloc(sizeof(*res) * (ft_intlen(nbr) + mod->isneg + 1))))

@@ -73,7 +73,7 @@ char	*pf_padder(int prec, t_struct *mod)
 		len--;
 		ls--;
 	}
-	if (mod->opad == 1 && mod->i == 1)
+	if (mod->opad == 1 && mod->isneg == 1)
 		mod->cors[0] = '-';
 	free(mod->cors);
 	return (res);
