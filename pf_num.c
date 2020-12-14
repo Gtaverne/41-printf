@@ -57,7 +57,9 @@ char	*pf_zerpad(t_struct *mod)
 	len--;
 	while (len >= mod->isneg)
 	{
-		if (mod->cors[i] && mod->cors[i] != '-')
+		if ((mod->cors[i] >= '0' && mod->cors[i] <= '9') || (mod->cors[i] >= \
+		'a' && (mod->cors[i] <= 'f')) || (mod->cors[i] >= 'A' && mod->cors[i] \
+		 <= 'F'))
 			repad[len] = mod->cors[i];
 		else
 			repad[len] = '0';
@@ -75,10 +77,10 @@ void	pf_num(t_struct *mod)
 	else
 		mod->cors = pf_itoa(va_arg(mod->args, int), mod);
 	if (mod->cors == NULL || (mod->cors[0] == '0' && mod->prec == 0))
-		return ;
-	if (mod->opad == 2)
-		mod->prec = mod->minl;
-	if (mod->opad && ((mod->prec > ft_strlen(mod->cors))))
+		mod->cors[0] = '\0';
+	if (mod->opad && mod->prec == -1 && !mod->ljust)
+		mod->prec = mod->minl - mod->isneg;
+	if (mod->prec > ft_strlen(mod->cors))
 		mod->cors = pf_zerpad(mod);
 	pf_nflag(mod);
 	free(mod->cors);

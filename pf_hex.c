@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int		pf_lenhex(int n)
+int		pf_lenhex(long int n)
 {
 	int			res;
 	long int	nbr;
@@ -59,7 +59,13 @@ void	pf_hex(t_struct *mod)
 	mod->cors[mod->lex] = '\0';
 	if (mod->cors == NULL || (mod->cors[0] == '0' && mod->prec == 0))
 		return ;
-	mod->cors = pf_padder(mod->prec, mod);
+//	mod->cors = pf_padder(mod->prec, mod);
+//	pf_nflag(mod);
+//	free(mod->cors);
+		if (mod->opad && mod->prec == -1 && !mod->ljust)
+		mod->prec = mod->minl - mod->isneg;
+	if (mod->prec > ft_strlen(mod->cors))
+		mod->cors = pf_zerpad(mod);
 	pf_nflag(mod);
 	free(mod->cors);
 }

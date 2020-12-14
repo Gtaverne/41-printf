@@ -37,21 +37,21 @@ char	*pf_prestr(int prec, char *str)
 	return (res);
 }
 
-char	*pf_wstr(int prec, char *str)
+char	*pf_wstr(t_struct *mod)
 {
 	int		len;
 	int		ls;
 	char	*res;
 
-	ls = ft_strlen(str);
-	len = (ls > prec ? ls : prec);
+	ls = ft_strlen(mod->cors);
+	len = (ls > mod->minl ? ls : mod->minl);
 	if (!(res = malloc((sizeof(*res) * (len + 1)))))
 		return (NULL);
 	res[len] = '\0';
 	while (len > 0)
 	{
 		if (ls > 0)
-			res[len - 1] = str[ls - 1];
+			res[len - 1] = mod->cors[ls - 1];
 		else
 			res[len - 1] = ' ';
 		len--;
@@ -85,7 +85,7 @@ void	pf_cors1(t_struct *mod)
 		pf_putchar(' ', mod);
 	if (mod->ljust)
 		return ;
-	tmp = pf_wstr(mod->minl, mod->cors);
+	tmp = pf_wstr(mod);
 	if (mod->prec >= 0)
 		free(mod->cors);
 	mod->cors = tmp;
@@ -97,26 +97,22 @@ void	pf_cors(t_struct *mod)
 {
 	char	c[2];
 
-	if (mod->src[mod->i] == 'c')
-	{
-		c[0] = va_arg(mod->args, int);
-		c[1] = '\0';
-		mod->cors = c;
-	}
-	else if (mod->src[mod->i] == 's')
+	if (mod->src[mod->i] == 's')
 	{
 		mod->cors = va_arg(mod->args, char *);
-		if (mod->cors == NULL && (mod->prec == -1 || mod->prec >= 6))
+		if (mod->cors == NULL)
 			mod->cors = "(null)";
-		else if (mod->cors == NULL)
-			mod->cors = "\0";
 		if (mod->prec >= 0)
 			mod->cors = pf_prestr(mod->prec, mod->cors);
 	}
-	else if (mod->src[mod->i] == '%')
+	else if (mod->src[mod->i] == '%' || mod->src[mod->i] == 'c')
 	{
-		c[0] = '%';
+		if (mod->src[mod->i] == 'c')
+			c[0] = va_arg(mod->args, int);
+		else
+			c[0] = '%';
 		c[1] = '\0';
+		mod->prec = -1;
 		mod->cors = c;
 	}
 	pf_cors1(mod);

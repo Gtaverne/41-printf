@@ -47,7 +47,7 @@ void	pf_minl(t_struct *mod)
 void	pf_prec(t_struct *mod)
 {
 	mod->prec = 0;
-	mod->opad++;
+	mod->opad = 1;
 	mod->i++;
 	if (mod->src[mod->i] == '*')
 	{

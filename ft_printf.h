@@ -52,10 +52,11 @@ void			ft_utoafill(char *str, long unsigned int n, int i);
 char			*ft_utoa(unsigned int n);
 void			pf_puthex(long int n, int i, t_struct *mod);
 void			pf_hex(t_struct *mod);
-int				pf_lenhex(int n);
+int				pf_lenhex(long int n);
 void			pf_ptr(t_struct *mod);
 int				ft_atoi(char *str);
 void			pf_minl(t_struct *mod);
 char			*pf_padder(int prec, t_struct *mod);
+char	*pf_zerpad(t_struct *mod);
 
 #endif
