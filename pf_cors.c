@@ -86,7 +86,11 @@ void	pf_cors1(t_struct *mod)
 	while (mod->ljust && 1 + mod->minl--)
 		pf_putchar(' ', mod);
 	if (mod->ljust)
+	{
+		if (mod->prec >= 0)
+			free(mod->cors);
 		return ;
+	}
 	tmp = pf_wstr(mod);
 	if (mod->prec >= 0)
 		free(mod->cors);
@@ -99,6 +103,8 @@ void	pf_cors(t_struct *mod)
 {
 	char	c[2];
 
+	if (mod->prec >= 0)
+		mod->opad = 0;
 	if (mod->src[mod->i] == 's')
 	{
 		mod->cors = va_arg(mod->args, char *);
