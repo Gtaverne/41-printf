@@ -52,7 +52,7 @@ char	*pf_wstr(t_struct *mod)
 	{
 		if (ls > 0)
 			res[len - 1] = mod->cors[ls - 1];
-		else if (ls <= 0 && mod->opad == 1 && !(mod->src[mod->i] == 's'))
+		else if (ls <= 0 && mod->opad == 1)
 			res[len - 1] = '0';
 		else
 			res[len - 1] = ' ';

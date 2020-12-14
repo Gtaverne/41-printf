@@ -67,15 +67,13 @@ char	*pf_padder(int prec, t_struct *mod)
 	res[len] = '\0';
 	while (len > 0)
 	{
-		if (ls > 0  && !(mod->cors[ls - 1] == '-' && mod->opad == 1))
+		if (ls > 0)
 			res[len - 1] = mod->cors[ls - 1];
 		else
 			res[len - 1] = ' ';
 		len--;
 		ls--;
 	}
-	if (mod->opad == 1 && mod->isneg == 1)
-		res[0] = '-';
 	free(mod->cors);
 	return (res);
 }
