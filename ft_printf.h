@@ -57,6 +57,8 @@ void			pf_ptr(t_struct *mod);
 int				ft_atoi(char *str);
 void			pf_minl(t_struct *mod);
 char			*pf_padder(int prec, t_struct *mod);
-char	*pf_zerpad(t_struct *mod);
+char			*pf_zerpad(t_struct *mod);
+void			pf_padchar(t_struct *mod);
+void			pf_char(t_struct *mod);
 
 #endif

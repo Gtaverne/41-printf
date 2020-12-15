@@ -103,8 +103,6 @@ void	pf_cors(t_struct *mod)
 {
 	char	c[2];
 
-	if (mod->prec >= 0)
-		mod->opad = 0;
 	if (mod->src[mod->i] == 's')
 	{
 		mod->cors = va_arg(mod->args, char *);
@@ -112,6 +110,7 @@ void	pf_cors(t_struct *mod)
 			mod->cors = "(null)";
 		if (mod->prec >= 0)
 			mod->cors = pf_prestr(mod->prec, mod->cors);
+		pf_cors1(mod);
 	}
 	else if (mod->src[mod->i] == '%' || mod->src[mod->i] == 'c')
 	{
@@ -120,8 +119,8 @@ void	pf_cors(t_struct *mod)
 		else
 			c[0] = '%';
 		c[1] = '\0';
-		mod->prec = -1;
+		mod->prec = (mod->prec == 0 ? 0 : 1);
 		mod->cors = c;
+		pf_char(mod);
 	}
-	pf_cors1(mod);
 }
