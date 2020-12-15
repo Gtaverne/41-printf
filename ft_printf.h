@@ -27,6 +27,7 @@ typedef struct	s_struct
 	int			minl;
 	int			prec;
 	int			opad;
+	int			ostr;
 	int			ljust;
 	long int	tohex;
 	int			lex;
