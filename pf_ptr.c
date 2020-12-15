@@ -21,15 +21,24 @@ void	pf_lenaddr(unsigned long int n, t_struct *mod)
 
 char	*pf_nulptr(t_struct *mod)
 {
-	char *res;
+	char	*res;
+	int		i;
 
+	i = 3;
 	free(mod->cors);
-	if (!(res = malloc(sizeof(char) * 4)))
+	if (mod->prec != 0)
+		i++;
+	if (!(res = malloc(sizeof(char) * i)))
 		return (NULL);
 	res[0] = '0';
 	res[1] = 'x';
-	res[2] = '0';
-	res[3] = '\0';
+	res[2] = '\0';
+	if (mod->prec != 0)
+	{
+		res[2] = '0';
+		res[3] = '\0';
+
+	}
 	return (res);
 }
 
