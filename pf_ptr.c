@@ -37,7 +37,6 @@ char	*pf_nulptr(t_struct *mod)
 	{
 		res[2] = '0';
 		res[3] = '\0';
-
 	}
 	return (res);
 }
@@ -45,7 +44,6 @@ char	*pf_nulptr(t_struct *mod)
 void	pf_ptr(t_struct *mod)
 {
 	mod->opad = 0;
-	mod->prec = -1;
 	mod->tohex = va_arg(mod->args, unsigned long int);
 	pf_lenaddr(mod->tohex, mod);
 	mod->lex += 2;
@@ -56,7 +54,11 @@ void	pf_ptr(t_struct *mod)
 	mod->cors[0] = '0';
 	mod->cors[1] = 'x';
 	if (mod->tohex == 0)
+	{
+		mod->prec = (mod->prec == 0 ? 0 : -1);
 		mod->cors = pf_nulptr(mod);
+	}
+	mod->prec = -1;
 	mod->cors = pf_padder(mod->prec, mod);
 	pf_nflag(mod);
 	free(mod->cors);
