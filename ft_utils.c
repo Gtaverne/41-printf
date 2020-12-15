@@ -18,6 +18,7 @@ void	bckt_init(t_struct *mod)
 	mod->ljust = 0;
 	mod->minl = 0;
 	mod->opad = 0;
+	mod->ostr = 0;
 	mod->prec = -1;
 	mod->lex = 0;
 	mod->isneg = 0;

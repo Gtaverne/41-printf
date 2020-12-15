@@ -24,11 +24,12 @@ char	*pf_nulptr(t_struct *mod)
 	char *res;
 
 	free(mod->cors);
-	if (!(res = malloc(sizeof(char) * 3)))
+	if (!(res = malloc(sizeof(char) * 4)))
 		return (NULL);
 	res[0] = '0';
 	res[1] = 'x';
-	res[2] = '\0';
+	res[2] = '0';
+	res[3] = '\0';
 	return (res);
 }
 
