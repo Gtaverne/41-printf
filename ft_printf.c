@@ -17,10 +17,7 @@ void	pf_zorleft(t_struct *mod)
 	while (mod->src[mod->i] == '0' || mod->src[mod->i] == '-')
 	{
 		if (mod->src[mod->i] == '0')
-		{
 			mod->opad = 1;
-			mod->ostr = 1;
-		}
 		if (mod->src[mod->i] == '-')
 			mod->ljust = 1;
 		mod->i++;
@@ -50,7 +47,6 @@ void	pf_minl(t_struct *mod)
 void	pf_prec(t_struct *mod)
 {
 	mod->prec = 0;
-	mod->opad = 1;
 	mod->i++;
 	if (mod->src[mod->i] == '*')
 	{
@@ -63,6 +59,10 @@ void	pf_prec(t_struct *mod)
 		while (mod->src[mod->i] >= '0' && mod->src[mod->i] <= '9')
 			mod->i++;
 	}
+	if (mod->prec < 0)
+		mod->prec = -1;
+	else
+		mod->opad = 0;
 }
 
 void	pf_pars(t_struct *mod)

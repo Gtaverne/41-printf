@@ -18,7 +18,6 @@ void	bckt_init(t_struct *mod)
 	mod->ljust = 0;
 	mod->minl = 0;
 	mod->opad = 0;
-	mod->ostr = 0;
 	mod->prec = -1;
 	mod->lex = 0;
 	mod->isneg = 0;
@@ -71,7 +70,7 @@ char	*pf_padder(int prec, t_struct *mod)
 		if (ls > 0)
 			res[len - 1] = mod->cors[ls - 1];
 		else
-			res[len - 1] = ' ';
+			res[len - 1] = (mod->opad ? '0' : ' ');
 		len--;
 		ls--;
 	}
