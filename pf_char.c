@@ -40,16 +40,6 @@ void	pf_char(t_struct *mod)
 			pf_putchar(' ', mod);
 		return ;
 	}
-	/*
-	else if (mod->prec == 0)
-	{
-		while (i++ < mod->minl && mod->opad == 0)
-			pf_putchar(' ', mod);
-		while (i++ - 1 < mod->minl && mod->opad == 1)
-			pf_putchar('0', mod);
-		return ;
-	}
-	*/
 	else
 		pf_padchar(mod);
 }

@@ -41,25 +41,47 @@ char	*pf_nulptr(t_struct *mod)
 	return (res);
 }
 
+void	pf_ptrljust(t_struct *mod)
+{
+	int	i;
+
+	i = 0;
+	mod->minl = (ft_strlen(mod->cors) > mod->minl ? ft_strlen(mod->cors) \
+			: mod->minl);
+	while (mod->ljust && mod->minl-- && mod->cors[i])
+		pf_putchar(mod->cors[i++], mod);
+	while (mod->ljust && 1 + mod->minl--)
+		pf_putchar(' ', mod);
+	if (mod->ljust)
+		return ;
+	mod->cors = pf_padder(mod->minl, mod);
+	if (mod->opad)
+	{
+		while (mod->cors[i++])
+			if (mod->cors[i] == 'x')
+				mod->cors[i] = '0';
+		mod->cors[1] = 'x';
+	}
+	pf_n(mod);
+}
+
 void	pf_ptr(t_struct *mod)
 {
-	mod->opad = 0;
+	int i;
+
+	i = 0;
 	mod->tohex = va_arg(mod->args, unsigned long int);
 	pf_lenaddr(mod->tohex, mod);
-	mod->lex += 2;
+	mod->lex = (mod->lex > mod->prec ? mod->lex : mod->prec) + 2;
 	if (!(mod->cors = malloc(sizeof(char) * (mod->lex + 1))))
 		return ;
+	while (i < mod->lex)
+		mod->cors[i++] = '0';
 	pf_puthex(mod->tohex, 1, mod);
 	mod->cors[mod->lex] = '\0';
+	mod->cors = pf_padder(mod->prec, mod);
 	mod->cors[0] = '0';
 	mod->cors[1] = 'x';
-	if (mod->tohex == 0)
-	{
-		mod->prec = (mod->prec == 0 ? 0 : -1);
-		mod->cors = pf_nulptr(mod);
-	}
-	mod->prec = -1;
-	mod->cors = pf_padder(mod->prec, mod);
-	pf_nflag(mod);
+	pf_ptrljust(mod);
 	free(mod->cors);
 }
