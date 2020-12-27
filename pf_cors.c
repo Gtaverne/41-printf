@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-char	*pf_prestr(int prec, char *str)
+char	*pf_prestr(t_struct *mod)
 {
 	int		len;
 	int		i;
@@ -21,19 +21,16 @@ char	*pf_prestr(int prec, char *str)
 	char	*res;
 
 	i = 0;
-	ls = ft_strlen(str);
-	len = (ls < prec ? ls : prec);
+	ls = ft_strlen(mod->cors);
+	len = (ls < mod->prec ? ls : mod->prec);
 	if (!(res = malloc((sizeof(*res) * (len + 1)))))
 		return (NULL);
+	res[len] = '\0';
 	while (i < len)
 	{
-		if (i < ls)
-			res[i] = str[i];
-		else
-			res[i] = ' ';
+		res[i] = mod->cors[i];
 		i++;
 	}
-	res[len] = '\0';
 	return (res);
 }
 
@@ -52,7 +49,7 @@ char	*pf_wstr(t_struct *mod)
 	{
 		if (ls > 0)
 			res[len - 1] = mod->cors[ls - 1];
-		else if (ls <= 0 && mod->opad == 1)
+		else if (ls <= 0 && mod->ostr == 1)
 			res[len - 1] = '0';
 		else
 			res[len - 1] = ' ';
@@ -109,7 +106,7 @@ void	pf_cors(t_struct *mod)
 		if (mod->cors == NULL)
 			mod->cors = "(null)";
 		if (mod->prec >= 0)
-			mod->cors = pf_prestr(mod->prec, mod->cors);
+			mod->cors = pf_prestr(mod);
 		pf_cors1(mod);
 	}
 	else if (mod->src[mod->i] == '%' || mod->src[mod->i] == 'c')

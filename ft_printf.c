@@ -17,7 +17,10 @@ void	pf_zorleft(t_struct *mod)
 	while (mod->src[mod->i] == '0' || mod->src[mod->i] == '-')
 	{
 		if (mod->src[mod->i] == '0')
+		{
 			mod->opad = 1;
+			mod->ostr = 1;
+		}
 		if (mod->src[mod->i] == '-')
 			mod->ljust = 1;
 		mod->i++;

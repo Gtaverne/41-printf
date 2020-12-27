@@ -19,7 +19,7 @@ void	pf_padchar(t_struct *mod)
 	i = 0;
 	while (i < mod->minl - 1)
 	{
-		if (mod->opad == 1)
+		if (mod->ostr == 1)
 			pf_putchar('0', mod);
 		else
 			pf_putchar(' ', mod);
@@ -33,7 +33,7 @@ void	pf_char(t_struct *mod)
 	int	i;
 
 	i = 0;
-	if (mod->ljust == 1 && mod->prec != 0)
+	if (mod->ljust == 1)
 	{
 		pf_putchar(mod->cors[0], mod);
 		while (i++ < mod->minl - 1)
