@@ -19,28 +19,6 @@ void	pf_lenaddr(unsigned long int n, t_struct *mod)
 	mod->lex++;
 }
 
-char	*pf_nulptr(t_struct *mod)
-{
-	char	*res;
-	int		i;
-
-	i = 3;
-	free(mod->cors);
-	if (mod->prec != 0)
-		i++;
-	if (!(res = malloc(sizeof(char) * i)))
-		return (NULL);
-	res[0] = '0';
-	res[1] = 'x';
-	res[2] = '\0';
-	if (mod->prec != 0)
-	{
-		res[2] = '0';
-		res[3] = '\0';
-	}
-	return (res);
-}
-
 void	pf_ptrljust(t_struct *mod)
 {
 	int	i;
@@ -78,6 +56,8 @@ void	pf_ptr(t_struct *mod)
 	while (i < mod->lex)
 		mod->cors[i++] = '0';
 	pf_puthex(mod->tohex, 1, mod);
+	if (mod->tohex == 0 && mod->prec == 0)
+		mod->cors[mod->lex - 1] = '\0';
 	mod->cors[mod->lex] = '\0';
 	mod->cors = pf_padder(mod->prec, mod);
 	mod->cors[0] = '0';

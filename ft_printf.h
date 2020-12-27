@@ -56,6 +56,8 @@ char			*ft_utoa(unsigned int n);
 void			pf_puthex(long int n, int i, t_struct *mod);
 void			pf_hex(t_struct *mod);
 int				pf_lenhex(long int n);
+void			pf_lenaddr(unsigned long int n, t_struct *mod);
+void			pf_ptrljust(t_struct *mod);
 void			pf_ptr(t_struct *mod);
 int				ft_atoi(char *str);
 void			pf_minl(t_struct *mod);
