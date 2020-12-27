@@ -37,7 +37,6 @@ typedef struct	s_struct
 int				ft_printf(const char *str, ...);
 void			bckt_init(t_struct *bckt);
 void			pf_putchar(char c, t_struct *bckt);
-void			bckt_init(t_struct *bckt);
 char			*pf_prestr(t_struct *mod);
 char			*pf_wstr(t_struct *mod);
 void			pf_pars(t_struct *bckt);
