@@ -80,7 +80,7 @@ void	pf_num(t_struct *mod)
 		mod->cors[0] = '\0';
 	if (mod->opad && mod->prec == -1 && !mod->ljust)
 		mod->prec = mod->minl - mod->isneg;
-	if (mod->prec > ft_strlen(mod->cors))
+	if (mod->prec > ft_strlen(mod->cors) - mod->isneg)
 		mod->cors = pf_zerpad(mod);
 	pf_nflag(mod);
 	free(mod->cors);
