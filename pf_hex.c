@@ -51,7 +51,7 @@ void	pf_puthex(long int n, int i, t_struct *mod)
 
 void	pf_hex(t_struct *mod)
 {
-	mod->tohex = va_arg(mod->args, long int);
+	mod->tohex = va_arg(mod->args, int);
 	mod->lex = pf_lenhex(mod->tohex);
 	if (!(mod->cors = malloc(sizeof(char) * (mod->lex + 1))))
 		return ;
